@@ -16,7 +16,7 @@
 - [x] 바인드 마운트 반영 (index.html 수정)
 - [x] Git 설정 + VSCode GitHub 연동
 
-##3)수행항목
+## 3)수행항목
 
 ### 3. Docker 설치 및 커스텀 이미지 빌드
 # Docker 설치 확인
