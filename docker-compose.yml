@@ -1,0 +1,7 @@
+services:
+  web-server:           # 서비스 이름
+    image: nginx        # 사용할 이미지 (Nginx)
+    ports:
+      - "8080:80"       # [내 컴퓨터 포트]:[도커 안의 포트] 연결!
+    volumes:
+      - .:/usr/share/nginx/html  # 현재 폴더(.)를 도커 서버와 동기화
