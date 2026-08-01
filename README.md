@@ -39,6 +39,7 @@ drwxr-xr-x  13 son1732321732  son1732321732   416  8  1 18:13 .git
 -rw-r--r--   1 son1732321732  son1732321732   521  8  1 13:09 Dockerfile
 -rw-r--r--   1 son1732321732  son1732321732   408  8  1 14:54 index.html
 -rw-r--r--   1 son1732321732  son1732321732  2588  8  1 18:50 README.md
+- 실행화면 : ![실행화면](./ls_result.png)
 
 
 - **hello-world 컨테이너 실행 테스트**
