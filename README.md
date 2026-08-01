@@ -40,7 +40,14 @@ drwxr-xr-x  13 son1732321732  son1732321732   416  8  1 18:13 .git
 -rw-r--r--   1 son1732321732  son1732321732   408  8  1 14:54 index.html
 -rw-r--r--   1 son1732321732  son1732321732  2588  8  1 18:50 README.md
 - 실행화면 : ![실행화면](./ls_result.png)
+https://github.com/jin1732/my-docker2/commit/6e1e122913868d95e088e497f727b080b3b020f4
 
+###  ③ Git 커밋 이력 확인 (증거 링크와 매칭)
+- 명령어 : **% git log --oneline -n 3**
+- 결과 : 6e1e122 (HEAD -> main, origin/main, origin/HEAD) docs: add execution result image to READM
+0ccfeef README la -al수정
+cb39a43 README la -al 수정
+- 실행화면 : ![실행화면](./log_result.png)
 
 - **hello-world 컨테이너 실행 테스트**
 % docker run hello-world
