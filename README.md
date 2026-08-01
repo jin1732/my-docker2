@@ -55,6 +55,26 @@ https://github.com/jin1732/my-docker2/commit/3ba0d9d54d37a59cd12bd05e6b1f5740565
 - 결과 : NAME                      IMAGE     COMMAND                   SERVICE      CREATED       STATUS       PORTS
 my-docker2-web-server-1   nginx     "/docker-entrypoint.…"   web-server   6 hours ago   Up 6 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp
 - 실행화면 : ![실행화면](./compose_result.png)
+https://github.com/jin1732/my-docker2/commit/f600478a7c0c28d83133bb75fe3b12e19cc81794
+
+###  ⑤ 웹 서버 응답 확인
+- 명령어 : **% curl localhost:8080**
+- 결과 : <!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>☀︎ 나의 도커서버 만들기 ☀︎</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        h1 { color: #0969da; }
+    </style>
+</head>
+<body>
+    <h1>Docker로 만든 Nginx 서버 작동</h1>
+    <p>✨성공적으로 웹 서버를 띄웠어요~ ✨</p>
+</body>
+</html>%    
+- 실행화면 : ![실행화면](./curl_result.png)
 
 
 - **hello-world 컨테이너 실행 테스트**
