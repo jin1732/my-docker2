@@ -8,7 +8,8 @@
 - **Docker**: 28.5.2 (OrbStack)
 - **Git**: 2.53.0
 
-## 2) 수행 체크리스트 (업데이트)
+
+## 2) 수행 체크리스트
 - [x] 터미널 기본 명령어 익히기 및 작업 폴더 구성
 - [x] chmod를 활용한 접근 권한 관리
 - [x] Docker 설치 및 실행 환경 정상 작동 확인
@@ -19,11 +20,13 @@
 - [x] Docker Volume을 활용한 데이터 보존 실습
 - [x] Git 저장소 생성 및 GitHub 원격 저장소 연결
 
+
 ## 3) 검증 방법 및 결과
 
 ###  ① 작업 디렉토리 위치 확인
-% pwd
-/Users/son1732321732/Developer/my-docker2
+```zsh
+- 명령어 : % pwd  
+- 결과 : /Users/son1732321732/Developer/my-docker2
 
 - **hello-world 컨테이너 실행 테스트**
 % docker run hello-world
