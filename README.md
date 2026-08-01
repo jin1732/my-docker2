@@ -26,19 +26,19 @@
 
 ###  ① 작업 디렉토리 위치 확인
 
->**% pwd**  <dr>
->/Users/son1732321732/Developer/my-docker2
+- 명령어 : **% pwd**
+- 수행이력: /Users/son1732321732/Developer/my-docker2
 
 ###  ② 프로젝트 파일 구성 확인
 
->**% ls -al** <dr>
->drwxr-xr-x   7 son1732321732  son1732321732   224  8  1 13:09 .
->drwxr-xr-x   3 son1732321732  son1732321732    96  8  1 13:09 ..
->drwxr-xr-x  13 son1732321732  son1732321732   416  8  1 18:13 .git
->-rw-r--r--   1 son1732321732  son1732321732   292  8  1 13:09 docker-compose.yml
->-rw-r--r--   1 son1732321732  son1732321732   521  8  1 13:09 Dockerfile
->-rw-r--r--   1 son1732321732  son1732321732   408  8  1 14:54 index.html
->-rw-r--r--   1 son1732321732  son1732321732  2588  8  1 18:50 README.md
+- 명령어 : **% ls -al**
+- 수행이력: drwxr-xr-x   7 son1732321732  son1732321732   224  8  1 13:09 .
+drwxr-xr-x   3 son1732321732  son1732321732    96  8  1 13:09 ..
+drwxr-xr-x  13 son1732321732  son1732321732   416  8  1 18:13 .git
+-rw-r--r--   1 son1732321732  son1732321732   292  8  1 13:09 docker-compose.yml
+-rw-r--r--   1 son1732321732  son1732321732   521  8  1 13:09 Dockerfile
+-rw-r--r--   1 son1732321732  son1732321732   408  8  1 14:54 index.html
+-rw-r--r--   1 son1732321732  son1732321732  2588  8  1 18:50 README.md
 
 
 - **hello-world 컨테이너 실행 테스트**
