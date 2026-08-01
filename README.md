@@ -1,4 +1,4 @@
-## **나만의 개발 작업실: Docker를 이용한 표준 개발 환경 구축 프로젝트**
+# **나만의 개발 작업실: Docker를 이용한 표준 개발 환경 구축 프로젝트**
 #### CLI 기초부터 Docker 기반 웹 서버 운영 및 Git 버전 관리까지
 ---
 
@@ -9,22 +9,23 @@
 - **Git**: 2.53.0
 
 ## 2) 수행 체크리스트 (업데이트)
-- [x] 터미널 워크플로우 및 폴더/파일 작동
+- [x] 터미널 기본 명령어 익히기 및 작업 폴더 구성
 - [x] chmod를 활용한 접근 권한 관리
-- [x] Docker 설치/점검
-- [x] hello-world 실행
-- [x] Dockerfile 빌드/실행 (커스텀 이미지 제작)
-- [x] 포트 매핑 접속 (8080:80)
-- [x] 바인드 마운트 반영 (index.html 수정)
-- [x] Git 설정 + VSCode GitHub 연동
+- [x] Docker 설치 및 실행 환경 정상 작동 확인
+- [x] hello-world 컨테이너 실행 테스트
+- [x] 커스텀 Dockerfile 작성 및 이미지 빌드하기
+- [x] 포트 매핑 설정을 통한 웹 서버 접속 확인
+- [x] 바인드 마운트(Bind Mount)를 이용한 파일 공유
+- [x] Docker Volume을 활용한 데이터 보존 실습
+- [x] Git 저장소 생성 및 GitHub 원격 저장소 연결
 
-## 3)수행항목
+## 3) 검증 방법 및 결과
 
-### 3. Docker 설치 및 커스텀 이미지 빌드
-# Docker 설치 확인
-% docker version
+###  ① 작업 디렉토리 위치 확인
+% pwd
+/Users/son1732321732/Developer/my-docker2
 
-# hello-world 컨테이너 실행 테스트
+- **hello-world 컨테이너 실행 테스트**
 % docker run hello-world
 
 # Dockerfile 작성 (Nginx 베이스의 커스텀 이미지)
