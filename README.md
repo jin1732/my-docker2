@@ -25,8 +25,9 @@
 
 ###  ① 작업 디렉토리 위치 확인
 ```zsh
-- 명령어 : % pwd  
-- 결과 : /Users/son1732321732/Developer/my-docker2
+% pwd  
+/Users/son1732321732/Developer/my-docker2
+```
 
 - **hello-world 컨테이너 실행 테스트**
 % docker run hello-world
