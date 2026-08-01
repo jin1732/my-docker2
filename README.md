@@ -1,4 +1,5 @@
-# Docker를 활용한 Nginx 커스텀 웹 서버 구축 학습
+# 나만의 개발 작업실: Docker를 이용한 표준 개발 환경 구축 프로젝트 
+CLI 기초부터 Docker 기반 웹 서버 운영 및 Git 버전 관리까지
 
 ## 1) 실행 환경
 - **OS**: macOS Sequoia 15.7.4
