@@ -23,21 +23,24 @@
 
 ## 3) 검증 방법 및 결과
 
+```zsh
 ###  ① 작업 디렉토리 위치 확인
 
->**% pwd**
->drwxr-xr-x   7 son1732321732  son1732321732   224  8  1 13:09 .
->drwxr-xr-x   3 son1732321732  son1732321732    96  8  1 13:09 ..
->drwxr-xr-x  13 son1732321732  son1732321732   416  8  1 18:13 .git
->-rw-r--r--   1 son1732321732  son1732321732   292  8  1 13:09 docker-compose.yml
->-rw-r--r--   1 son1732321732  son1732321732   521  8  1 13:09 Dockerfile
->-rw-r--r--   1 son1732321732  son1732321732   408  8  1 14:54 index.html
->-rw-r--r--   1 son1732321732  son1732321732  2588  8  1 18:50 README.md
-
+**% pwd**  
+/Users/son1732321732/Developer/my-docker2
+```
+```zsh
 ###  ② 프로젝트 파일 구성 확인
 
->**% ls -al**
->/Users/son1732321732/Developer/my-docker2
+**% ls -al**
+drwxr-xr-x   7 son1732321732  son1732321732   224  8  1 13:09 .
+drwxr-xr-x   3 son1732321732  son1732321732    96  8  1 13:09 ..
+drwxr-xr-x  13 son1732321732  son1732321732   416  8  1 18:13 .git
+-rw-r--r--   1 son1732321732  son1732321732   292  8  1 13:09 docker-compose.yml
+-rw-r--r--   1 son1732321732  son1732321732   521  8  1 13:09 Dockerfile
+-rw-r--r--   1 son1732321732  son1732321732   408  8  1 14:54 index.html
+-rw-r--r--   1 son1732321732  son1732321732  2588  8  1 18:50 README.md
+```
 
 - **hello-world 컨테이너 실행 테스트**
 % docker run hello-world
