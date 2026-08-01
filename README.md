@@ -48,6 +48,14 @@ https://github.com/jin1732/my-docker2/commit/6e1e122913868d95e088e497f727b080b3b
 0ccfeef README la -al수정
 cb39a43 README la -al 수정
 - 실행화면 : ![실행화면](./log_result.png)
+https://github.com/jin1732/my-docker2/commit/3ba0d9d54d37a59cd12bd05e6b1f574056509745
+
+###  ④ Docker 컨테이너 실행 상태 확인
+- 명령어 : **% docker-compose ps**
+- 결과 : NAME                      IMAGE     COMMAND                   SERVICE      CREATED       STATUS       PORTS
+my-docker2-web-server-1   nginx     "/docker-entrypoint.…"   web-server   6 hours ago   Up 6 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp
+- 실행화면 : ![실행화면](./compose_result.png)
+
 
 - **hello-world 컨테이너 실행 테스트**
 % docker run hello-world
