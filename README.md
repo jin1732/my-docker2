@@ -242,6 +242,7 @@ https://github.com/jin1732/my-docker2/commit/099f61a979f3f879c2fab0278768a0cc3c6
 https://github.com/jin1732/my-docker2/commit/f28db6eb4025d8945961a73c688d71149950cce7
 
 
+
 ##  6) 핵심 제출물 및 상세 검증 증거
 
 ###  ① Dockerfile 및 웹 서버 소스코드
@@ -261,6 +262,7 @@ son1732321732@c6r3s8 my-docker2 %
 ```
 이미지가 이미 최신 상태라 빌드 과정이 생략되었지만, 네트워크와 컨테이너가 정상적으로 생성 및 시작된 것을 확인할 수 있습니다
 https://github.com/jin1732/my-docker2/commit/7f4b3fa819ce3aeb7a1f7352536d06f368c5e435
+
 
 ###  ② 포트 매핑(Port Mapping) 접속 확인
 - 설정: 8080:80 (호스트 포트 8080을 컨테이너 80으로 매핑)
@@ -292,4 +294,22 @@ son1732321732@c6r3s8 my-docker2 % docker compose up -d
 son1732321732@c6r3s8 my-docker2 % 
 ```
 - 결과 : docker compose down으로 컨테이너를 완전히 삭제한 후 다시 생성했음에도, 바인드 마운트된 index.html의 수정 내용이 유실되지 않고 유지됨을 확인했습니다. 이는 컨테이너 인프라 환경에서 데이터 영속성이 성공적으로 구현되었음을 의미합니다.
+
+
+###  ⑤ Git & GitHub & VSCode 연동 증거
+- Git 설정: git config를 통한 사용자 이름/이메일 등록 완료
+```zsh
+son1732321732@c6r3s8 my-docker2 % git config --list
+credential.helper=osxkeychain
+user.name=jin1732
+user.email=son173232@naver.com
+```
+- GitHub 연동: git remote -v 명령어로 원격 저장소(origin) 연결 확인
+```zsh
+son1732321732@c6r3s8 my-docker2 % git remote -v
+origin  https://github.com/jin1732/my-docker2.git (fetch)
+origin  https://github.com/jin1732/my-docker2.git (push)
+```
+- VSCode 연동: VSCode 계정(Accounts) 설정을 통한 GitHub 로그인 확인 및 소스 제어(Source Control) 패널을 이용한 실시간 동기화(Push/Pull) 상태 검증.
+실행화면 ![실핼화면](./images/GitHub_result.png)
 
