@@ -334,14 +334,23 @@ memo.txt
 ```
 
 ###  ⑦ 권한 실습: chmod 명령어를 통한 파일 권한 변경 전/후 비교
-- 명령어 : ls -l, chmod 
+- 파일 권한 실습 (ls -ld,chmod)
 ```zsh
-son1732321732@c6r3s8 practice-dir % ls -l memo.txt
--rw-r--r--  1 son1732321732  son1732321732  18  8  3 19:33 memo.txt
+son1732321732@c6r3s8 practice-dir % ls -ld memo.txt
+-rwxr-xr-x  1 son1732321732  son1732321732  18  8  3 19:33 memo.txt
 son1732321732@c6r3s8 practice-dir % chmod 755 memo.txt
-son1732321732@c6r3s8 practice-dir % ls -l memo.txt
+son1732321732@c6r3s8 practice-dir % ls -ld memo.txt
 -rwxr-xr-x  1 son1732321732  son1732321732  18  8  3 19:33 memo.txt
 son1732321732@c6r3s8 practice-dir % 
+```
+- 디렉토리 권한 실습 (ls -ld, chmod)
+```zsh
+son1732321732@c6r3s8 my-docker2 % ls -ld                                      
+drwxr-xr-x  11 son1732321732  son1732321732  352  8  3 19:30 .
+son1732321732@c6r3s8 my-docker2 % chmod 700 .
+son1732321732@c6r3s8 my-docker2 % ls -ld .
+drwx------  11 son1732321732  son1732321732  352  8  3 19:30 .
+son1732321732@c6r3s8 my-docker2 % 
 ```
 
 ###  ⑧ Ubuntu 컨테이너 실습 및 개념 정리
