@@ -275,6 +275,21 @@ https://github.com/jin1732/my-docker2/commit/d346b6c6e9a99750973d590206c70e0a3a3
 - 검증 방법: 호스트의 index.html 수정 시 컨테이너 재시작 없이 반영되는지 확인
 - 실행화면 : ![실행화면](./images/index_result.png)
  index.html 파일을 수정한 후 브라우저를 새로고침하여, 변경된 내용이 즉시 동기화된 것을 검증하였습니다. (②번 항목의 초기 화면과 변경 사항 비교)
+https://github.com/jin1732/my-docker2/commit/aeb47574c6a9ef008f13dd95771608963b8b2d53
 
 
+### ④ Docker 볼륨(Volume) 데이터 영속성 증거
+- 검증 방법: 컨테이너 삭제(down) 후 재실행(up) 시에도 데이터가 유지되는지 확인
+```zsh
+son1732321732@c6r3s8 my-docker2 % docker compose down
+[+] Running 2/2
+ ✔ Container my-docker2-web-server-1  Removed                                                                                   0.4s 
+ ✔ Network my-docker2_default         Removed                                                                                   0.1s 
+son1732321732@c6r3s8 my-docker2 % docker compose up -d
+[+] Running 2/2
+ ✔ Network my-docker2_default         Created                                                                                   0.1s 
+ ✔ Container my-docker2-web-server-1  Started                                                                                   0.3s 
+son1732321732@c6r3s8 my-docker2 % 
+```
+- 결과 : docker compose down으로 컨테이너를 완전히 삭제한 후 다시 생성했음에도, 바인드 마운트된 index.html의 수정 내용이 유실되지 않고 유지됨을 확인했습니다. 이는 컨테이너 인프라 환경에서 데이터 영속성이 성공적으로 구현되었음을 의미합니다.
 
