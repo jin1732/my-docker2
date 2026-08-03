@@ -1,5 +1,5 @@
 # **나만의 개발 작업실: Docker를 이용한 표준 개발 환경 구축 프로젝트**
-#### CLI 기초부터 Docker 기반 웹 서버 운영 및 Git 버전 관리까지
+#### CLI 기초부터 Docker 기반 웹 서버 운영, Git 버전 관리까지! 이 프로젝트는 Docker와 Git을 활용한 표준화된 개발 환경 구축을 통해 컨테이너 기술의 핵심 원리를 체득하고 실무 역량을 기르는 데 목적이 있습니다.
 ---
 
 ## 1) 실행 환경
@@ -312,4 +312,106 @@ origin  https://github.com/jin1732/my-docker2.git (push)
 ```
 - VSCode 연동: VSCode 계정(Accounts) 설정을 통한 GitHub 로그인 확인 및 소스 제어(Source Control) 패널을 이용한 실시간 동기화(Push/Pull) 상태 검증.
 실행화면 ![실핼화면](./images/GitHub_result.png)
+https://github.com/jin1732/my-docker2/commit/27db9dab6e4fd7d233de91e0ec9454685bb95d50
 
+
+###  ⑥ 터미널 조작 및 파일 관리 로그
+- 명령어 : mkdir, touch, cp, mv, rm, cat 숙달 확인
+```zsh
+son1732321732@c6r3s8 my-docker2 % mkdir practice-dir
+son1732321732@c6r3s8 my-docker2 % cd practice-dir
+son1732321732@c6r3s8 practice-dir % touch memo.txt
+son1732321732@c6r3s8 practice-dir % echo "Terminal Practice" > memo.txt
+son1732321732@c6r3s8 practice-dir % cat memo.txt
+Terminal Practice
+son1732321732@c6r3s8 practice-dir % cp memo.txt memo_copy.txt
+son1732321732@c6r3s8 practice-dir % mv memo_copy.txt renamed_memo.txt
+son1732321732@c6r3s8 practice-dir % ls
+memo.txt                renamed_memo.txt
+son1732321732@c6r3s8 practice-dir % rm renamed_memo.txt
+son1732321732@c6r3s8 practice-dir % ls
+memo.txt
+```
+
+###  ⑦ 권한 실습: chmod 명령어를 통한 파일 권한 변경 전/후 비교
+- 명령어 : ls -l, chmod 
+```zsh
+son1732321732@c6r3s8 practice-dir % ls -l memo.txt
+-rw-r--r--  1 son1732321732  son1732321732  18  8  3 19:33 memo.txt
+son1732321732@c6r3s8 practice-dir % chmod 755 memo.txt
+son1732321732@c6r3s8 practice-dir % ls -l memo.txt
+-rwxr-xr-x  1 son1732321732  son1732321732  18  8  3 19:33 memo.txt
+son1732321732@c6r3s8 practice-dir % 
+```
+
+###  ⑧ Ubuntu 컨테이너 실습 및 개념 정리
+- 목적: OS 베이스 이미지 실행 및 컨테이너 제어 방식 이해
+
+#### Ubuntu 컨테이너 실행 및 내부 조작
+- 명령어 : docker run -it --name my-ubuntu ubuntu /bin/bash
+```zsh
+son1732321732@c6r3s8 practice-dir % docker run -it --name my-ubuntu ubuntu /bin/bash
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+ed819469700f: Pull complete 
+a3679419df18: Pull complete 
+Digest: sha256:3131b4cc82a783df6c9df078f86e01819a13594b865c2cad47bd1bca2b7063bb
+Status: Downloaded newer image for ubuntu:latest
+root@3502c9ff17f8:/# 
+```
+#### 개념 정리: 컨테이너 접속 방식(attach vs exec)의 차이점
+- 명령어 : exec_새 창을 열고 들어가는 방식 (**exit 해도 컨테이너 유지**)
+```zsh
+root@3502c9ff17f8:/# exit
+exit
+son1732321732@c6r3s8 practice-dir % docker ps
+CONTAINER ID   IMAGE     COMMAND                   CREATED       STATUS       PORTS                                     NAMES
+86302c23ec18   nginx     "/docker-entrypoint.…"   2 hours ago   Up 2 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-docker2-web-server-1
+son1732321732@c6r3s8 practice-dir % docker start my-ubuntu
+my-ubuntu
+son1732321732@c6r3s8 practice-dir % docker exec -it my-ubuntu /bin/bash
+root@3502c9ff17f8:/# #
+root@3502c9ff17f8:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@3502c9ff17f8:/# mkdir test_dir
+root@3502c9ff17f8:/# touch hello.txt
+root@3502c9ff17f8:/# ls
+bin  boot  dev  etc  hello.txt  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  test_dir  tmp  usr  var
+root@3502c9ff17f8:/# whoami
+root
+root@3502c9ff17f8:/# pwd
+/
+root@3502c9ff17f8:/# cat /etc/os-release
+PRETTY_NAME="Ubuntu 26.04 LTS"
+NAME="Ubuntu"
+VERSION_ID="26.04"
+VERSION="26.04 LTS (Resolute Raccoon)"
+VERSION_CODENAME=resolute
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=resolute
+LOGO=ubuntu-logo
+root@3502c9ff17f8:/# exit
+exit
+son1732321732@c6r3s8 practice-dir % docker ps
+CONTAINER ID   IMAGE     COMMAND                   CREATED          STATUS         PORTS                                     NAMES
+3502c9ff17f8   ubuntu    "/bin/bash"               11 minutes ago   Up 4 minutes                                             my-ubuntu
+86302c23ec18   nginx     "/docker-entrypoint.…"   2 hours ago      Up 2 hours     0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-docker2-web-server-1
+son1732321732@c6r3s8 practice-dir % 
+```
+- 명령어 : attach_원래 떠 있는 화면으로 들어가는 방식 (**exit 하면 컨테이너 종료**)
+```zsh
+son1732321732@c6r3s8 practice-dir % docker attach my-ubuntu
+root@3502c9ff17f8:/# ls
+bin  boot  dev  etc  hello.txt  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  test_dir  tmp  usr  var
+root@3502c9ff17f8:/# exit
+exit
+son1732321732@c6r3s8 practice-dir % docker ps
+CONTAINER ID   IMAGE     COMMAND                   CREATED       STATUS       PORTS                                     NAMES
+86302c23ec18   nginx     "/docker-entrypoint.…"   2 hours ago   Up 2 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-docker2-web-server-1
+son1732321732@c6r3s8 practice-dir % 
+```
