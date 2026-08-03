@@ -9,6 +9,7 @@
 - **Git**: 2.53.0
 
 
+
 ## 2) 수행 체크리스트
 - [x] 터미널 기본 명령어 익히기 및 작업 폴더 구성
 - [x] chmod를 활용한 접근 권한 관리
@@ -21,7 +22,68 @@
 - [x] Git 저장소 생성 및 GitHub 원격 저장소 연결
 
 
-## 3) 검증 방법 및 결과
+
+## 3) Docker & Git 개발 환경 구축 전체 로드맵
+
+###  ① 프로젝트 기초 공사
+- mkdir my-docker : 프로젝트 폴더 생성 (내 작업실 만들기)
+- cd my-docker : 폴더로 이동 (작업실 안으로 들어가기)
+- git init : Git 저장소 시작 (이 폴더를 Git이 지금부터 감시하고 기록하기 시작함)
+- git config --global user.name "이름" : 내 이름 등록 (누가 기록했는지 남기기 위해)
+- git config --global user.email "이메일" : 내 이메일 등록 (연락처 정보 남기기)
+
+###  ② 첫 기록 남기기
+- touch README.md : 프로젝트 설명서 파일 생성
+- git add README.md : Git에게 "이 파일을 다음 기록(커밋)에 포함할 거야"라고 말하기 (장바구니에 담기)
+- git commit -m "첫 커밋" : 현재 상태를 사진 찍듯 기록하여 내 컴퓨터에 저장하기 (최종 구매 확정)
+
+###  ③ Docker 엔진 가동 (중요!)
+- OrbStack 실행: Docker 명령어를 쓰기 전 반드시 실행 (기계를 켜는 작업)
+- docker run hello-world : Docker 기계가 잘 돌아가는지 테스트 (확인용)
+
+###  ④ 본격적인 코딩 및 설계 (VS Code 활용)
+- code . : VS Code로 현재 폴더 열기
+- index.html 생성: 웹사이트의 내용을 작성 (예: Hello Docker!)
+- Dockerfile 생성: "나만의 서버 이미지"를 만드는 레시피 작성 (Nginx 베이스, 파일 복사 설정)
+- docker-compose.yml 생성: Docker 설계도 작성 (이미지, 포트 번호 등 정의)
+
+###  ⑤ 서비스 실행 및 확인
+- docker compose up -d --build : 설계도대로 서버를 조립하고 백그라운드에서 실행
+- 브라우저 확인: 주소창에 localhost:8080을 입력해 내 웹사이트가 나오는지 확인
+
+###  ⑥ 작업 마무리 (로컬 Git 기록)
+- git add . : 새로 만든 모든 파일(html, Dockerfile 등)을 장바구니에 담기
+- git commit -m "Nginx 설정 완료" : 오늘 작업한 내용을 내 컴퓨터 Git에 최종 저장
+
+###  ⑦ GitHub에 내보내기 (원격 저장소 연동)
+- git remote add origin [GitHub 주소] : 내 컴퓨터와 GitHub 저장소를 연결 (최초 1회)
+- git push origin main : 내 컴퓨터의 기록을 GitHub로 전송 (클라우드 백업 및 공유)
+
+###  ⑧ 서비스 관리 및 상태 점검
+- docker ps : 현재 실행 중인 컨테이너 목록과 상태 확인 (건강검진)
+- docker logs -f [컨테이너명] : 서버 내부의 로그(접속 기록, 에러)를 실시간으로 확인
+
+###  ⑨ 코드 수정 및 업데이트 (반복 작업)
+- 파일 수정: VS Code에서 내용을 수정하고 저장
+- docker compose up -d --build : 수정한 코드를 서버에 반영하기 위해 다시 조립하고 실행
+- 새로고침: 브라우저에서 변경된 내용 확인
+
+###  ⑩ 환경 정리 및 리소스 관리
+- docker compose down : 실행 중인 서비스를 완전히 끄고 삭제 (깔끔한 뒷정리)
+- docker system prune -a : 사용하지 않는 이미지/컨테이너 찌꺼기를 삭제해 용량 확보
+
+###  ⑪ 협업 및 동기화
+- git status : 현재 수정된 파일이 무엇인지 수시로 체크
+- git pull origin main : GitHub에 있는 최신 코드를 내 컴퓨터로 가져오기 (※ 내용이 반영되지 않는다면 13단계 Case 2 참고)
+- .gitignore 작성: 보안상 중요한 파일이나 불필요한 파일이 Git에 올라가지 않도록 설정
+
+###  ⑫ 나만의 이미지 배포 (심화)
+- docker login : Docker Hub 계정으로 로그인
+- docker push [내아이디]/이미지명 : 내가 만든 이미지를 인터넷에 올려서 어디서든 사용할 수 있게 만들기
+
+
+
+## 4) 검증 방법 및 결과
 
 ###  ① 작업 디렉토리 위치 확인
 
@@ -78,7 +140,8 @@ https://github.com/jin1732/my-docker2/commit/f600478a7c0c28d83133bb75fe3b12e19cc
 https://github.com/jin1732/my-docker2/commit/099f61a979f3f879c2fab0278768a0cc3c6f61e0
 
 
-## 4) 실습 기반 트러블슈팅 리포트
+
+## 5) 실습 기반 트러블슈팅 리포트
 
 ### [Case 1] 원격 브랜치 인식 불가
 
