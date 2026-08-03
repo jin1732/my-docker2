@@ -83,6 +83,24 @@ https://github.com/jin1732/my-docker2/commit/099f61a979f3f879c2fab0278768a0cc3c6
 ### [Case 1] 원격 브랜치 인식 불가
 
 #### ① 문제 상황 (Problem)
+- 상황: GitHub 웹 UI에서 test-fix2 브랜치를 새로 생성함.
+- 로컬 터미널에서 해당 브랜치로 이동하기 위해 git checkout test-fix2를 입력했으나 에러 발생.
+- 에러 메시지: error: pathspec 'test-fix2' did not match any file(s) known to git
+
+#### ② 원인 가설
+- 로컬 Git 저장소의 메타데이터(Metadata)가 서버(GitHub)의 최신 상태를 반영하지 못하고 있음.
+- 로컬 저장소는 서버에 test-fix2라는 브랜치가 생겼다는 사실을 아직 인지하지 못한 상태임.
+
+#### ③ 상태 확인
+- git branch -a 명령어로 전체 브랜치 목록을 확인한 결과, 서버에는 존재하는 test-fix2가 로컬 목록에는 나타나지 않음을 확인.
+
+#### ④ 해결 과정
+- git fetch를 실행하여 서버의 최신 브랜치 정보를 로컬로 업데이트.
+- 동기화 후 브랜치 목록에 test-fix2가 정상적으로 나타나며, 브랜치 이동(checkout)이 가능해짐.
+
+### [Case 2] 로컬-원격 파일 내용 불일치 문제 
+
+#### ① 문제 상황 (Problem)
 - 상황: GitHub 웹 UI에서 test-fix2 README.md 파일을 직접 수정하고 커밋함.
 - 현상 : 로컬에서 git checkout test-fix2로 이동은 했으나, 웹에서 수정했던 최신 문구가 파일에 보이지 않음.
 
@@ -96,4 +114,5 @@ https://github.com/jin1732/my-docker2/commit/099f61a979f3f879c2fab0278768a0cc3c6
 #### ④ 해결 과정
 - git pull origin test-fix2 명령어를 실행.
 - 서버의 최신 커밋 데이터를 가져와서(fetch) 현재 로컬 파일에 합침(merge). 이후 cat README.md로 최신 내용이 반영된 것을 확인.
+
 
