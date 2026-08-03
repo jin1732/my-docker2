@@ -112,11 +112,38 @@ cb39a43 README la -al 수정
 https://github.com/jin1732/my-docker2/commit/3ba0d9d54d37a59cd12bd05e6b1f574056509745
 
 ###  ④ Docker 운영 및 검증 로그
+
 ####  설치 및 환경 점검 결과
 - 명령어: docker --version, docker info
-- 내용: Docker 엔진 설치 버전과 시스템 환경 정보를 확인합니다.
+- 결과: son1732321732@c6r3s8 my-docker2 % docker --version                         
+Docker version 28.5.2, build ecc6942
+son1732321732@c6r3s8 my-docker2 % docker info | head -n 10
+Client:
+ Version:    28.5.2
+ Context:    orbstack
+ Debug Mode: false
+ Plugins:
+  buildx: Docker Buildx (Docker Inc.)
+    Version:  v0.29.1
+    Path:     /Users/son1732321732/.docker/cli-plugins/docker-buildx
+  compose: Docker Compose (Docker Inc.)
+    Version:  v2.40.3
+WARNING: DOCKER_INSECURE_NO_IPTABLES_RAW is set
 - 실행 화면: ![실행화면](./images/docker1_result.png)
+https://github.com/jin1732/my-docker2/commit/e73f4fcc9c24d7d8edaf3547753e0a64b4bc8c7d
 
+#### 이미지 및 전체 컨테이너 목록
+- 명령어: docker images, docker ps -a
+- 결과: son1732321732@c6r3s8 my-docker2 % docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+nginx        latest    4e5db4761e0f   2 weeks ago   161MB
+son1732321732@c6r3s8 my-docker2 % docker ps -a
+CONTAINER ID   IMAGE     COMMAND                   CREATED       STATUS       PORTS                                     NAMES
+d4d795587163   nginx     "/docker-entrypoint.…"   5 hours ago   Up 5 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-docker2-web-server-1
+- 실행 화면: ![실행화면](./images/docker2_result.png)
+
+
+이미지 및 전체 컨테이너 목록
 
 - 명령어 : **% docker-compose ps**
 - 결과 : NAME                      IMAGE     COMMAND                   SERVICE      CREATED       STATUS       PORTS
