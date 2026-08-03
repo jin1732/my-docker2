@@ -39,7 +39,7 @@ drwxr-xr-x  13 son1732321732  son1732321732   416  8  1 18:13 .git
 -rw-r--r--   1 son1732321732  son1732321732   521  8  1 13:09 Dockerfile
 -rw-r--r--   1 son1732321732  son1732321732   408  8  1 14:54 index.html
 -rw-r--r--   1 son1732321732  son1732321732  2588  8  1 18:50 README.md
-- 실행화면 : ![실행화면](./ls_result.png)
+- 실행화면 : ![실행화면](./images/ls_result.png)
 https://github.com/jin1732/my-docker2/commit/6e1e122913868d95e088e497f727b080b3b020f4
 
 ###  ③ Git 커밋 이력 확인 (증거 링크와 매칭)
@@ -47,14 +47,14 @@ https://github.com/jin1732/my-docker2/commit/6e1e122913868d95e088e497f727b080b3b
 - 결과 : 6e1e122 (HEAD -> main, origin/main, origin/HEAD) docs: add execution result image to READM
 0ccfeef README la -al수정
 cb39a43 README la -al 수정
-- 실행화면 : ![실행화면](./log_result.png)
+- 실행화면 : ![실행화면](./images/log_result.png)
 https://github.com/jin1732/my-docker2/commit/3ba0d9d54d37a59cd12bd05e6b1f574056509745
 
 ###  ④ Docker 컨테이너 실행 상태 확인
 - 명령어 : **% docker-compose ps**
 - 결과 : NAME                      IMAGE     COMMAND                   SERVICE      CREATED       STATUS       PORTS
 my-docker2-web-server-1   nginx     "/docker-entrypoint.…"   web-server   6 hours ago   Up 6 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp
-- 실행화면 : ![실행화면](./compose_result.png)
+- 실행화면 : ![실행화면](./images/compose_result.png)
 https://github.com/jin1732/my-docker2/commit/f600478a7c0c28d83133bb75fe3b12e19cc81794
 
 ###  ⑤ 웹 서버 응답 확인
@@ -75,7 +75,7 @@ https://github.com/jin1732/my-docker2/commit/f600478a7c0c28d83133bb75fe3b12e19cc
 </body>
 </html>  
 
-- 실행화면 : ![실행화면](./curl_result.png)
+- 실행화면 : ![실행화면](./images/curl_result.png)
 https://github.com/jin1732/my-docker2/commit/099f61a979f3f879c2fab0278768a0cc3c6f61e0
 
 
