@@ -260,6 +260,15 @@ son1732321732@c6r3s8 my-docker2 % docker compose up -d --build
 son1732321732@c6r3s8 my-docker2 % 
 ```
 이미지가 이미 최신 상태라 빌드 과정이 생략되었지만, 네트워크와 컨테이너가 정상적으로 생성 및 시작된 것을 확인할 수 있습니다
+https://github.com/jin1732/my-docker2/commit/7f4b3fa819ce3aeb7a1f7352536d06f368c5e435
+
+###  ② 포트 매핑(Port Mapping) 접속 확인
+- 설정: 8080:80 (호스트 포트 8080을 컨테이너 80으로 매핑)
+```zsh
+CONTAINER ID   IMAGE     COMMAND                   CREATED          STATUS          PORTS                                     NAMES
+0b92fb465e1d   nginx     "/docker-entrypoint.…"   10 minutes ago   Up 10 minutes   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-docker2-web-server-1
+```
+- 실행화면 : ![실행화면](./images/Port_result.png)
 
 
 
