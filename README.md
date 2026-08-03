@@ -93,21 +93,32 @@
 ###  ② 프로젝트 파일 구성 확인
 
 - 명령어 : **% ls -al**
-- 결과 : drwxr-xr-x   7 son1732321732  son1732321732   224  8  1 13:09 .
-drwxr-xr-x   3 son1732321732  son1732321732    96  8  1 13:09 ..
-drwxr-xr-x  13 son1732321732  son1732321732   416  8  1 18:13 .git
--rw-r--r--   1 son1732321732  son1732321732   292  8  1 13:09 docker-compose.yml
--rw-r--r--   1 son1732321732  son1732321732   521  8  1 13:09 Dockerfile
--rw-r--r--   1 son1732321732  son1732321732   408  8  1 14:54 index.html
--rw-r--r--   1 son1732321732  son1732321732  2588  8  1 18:50 README.md
+```zsh
+son1732321732@c6r3s8 my-docker2 % ls -al
+total 88
+-rw-r--r--   1 son1732321732  son1732321732      0  8  3 14:43 ③
+drwx------  11 son1732321732  son1732321732    352  8  3 19:30 .
+drwxr-xr-x   3 son1732321732  son1732321732     96  8  3 11:53 ..
+-rw-r--r--   1 son1732321732  son1732321732   6148  8  3 11:53 .DS_Store
+drwxr-xr-x  15 son1732321732  son1732321732    480  8  3 21:04 .git
+-rw-r--r--   1 son1732321732  son1732321732    292  8  3 11:53 docker-compose.yml
+-rw-r--r--   1 son1732321732  son1732321732    521  8  3 11:53 Dockerfile
+drwxr-xr-x  13 son1732321732  son1732321732    416  8  3 18:47 images
+-rw-r--r--   1 son1732321732  son1732321732    395  8  3 18:04 index.html
+drwxr-xr-x   3 son1732321732  son1732321732     96  8  3 19:35 practice-dir
+-rw-r--r--   1 son1732321732  son1732321732  22414  8  3 21:05 README.md
+```
 - 실행화면 : ![실행화면](./images/ls_result.png)
 https://github.com/jin1732/my-docker2/commit/6e1e122913868d95e088e497f727b080b3b020f4
 
 ###  ③ Git 커밋 이력 확인 (증거 링크와 매칭)
 - 명령어 : **% git log --oneline -n 3**
-- 결과 : 6e1e122 (HEAD -> main, origin/main, origin/HEAD) docs: add execution result image to READM
-0ccfeef README la -al수정
-cb39a43 README la -al 수정
+```zsh
+son1732321732@c6r3s8 my-docker2 % git log --oneline -n 3
+b22f80c (HEAD -> main, origin/main, origin/HEAD) 권한 실습 로그 업데이트
+8a95ff7 6) 전체 문서 및 누락된 파일 최종 업데이드 수정
+c877ccd 6) 전체 문서 및 누락된 파일 최종 업데이트
+```
 - 실행화면 : ![실행화면](./images/log_result.png)
 https://github.com/jin1732/my-docker2/commit/3ba0d9d54d37a59cd12bd05e6b1f574056509745
 
@@ -115,7 +126,8 @@ https://github.com/jin1732/my-docker2/commit/3ba0d9d54d37a59cd12bd05e6b1f5740565
 
 ####  설치 및 환경 점검 결과
 - 명령어: docker --version, docker info
-- 결과: son1732321732@c6r3s8 my-docker2 % docker --version                         
+```zsh
+son1732321732@c6r3s8 my-docker2 % docker --version                         
 Docker version 28.5.2, build ecc6942
 son1732321732@c6r3s8 my-docker2 % docker info | head -n 10
 Client:
@@ -129,30 +141,53 @@ Client:
   compose: Docker Compose (Docker Inc.)
     Version:  v2.40.3
 WARNING: DOCKER_INSECURE_NO_IPTABLES_RAW is set
+```
 - 실행 화면: ![실행화면](./images/docker1_result.png)
 https://github.com/jin1732/my-docker2/commit/e73f4fcc9c24d7d8edaf3547753e0a64b4bc8c7d
 
 #### 이미지 및 전체 컨테이너 목록
 - 명령어: docker images, docker ps -a
-- 결과: son1732321732@c6r3s8 my-docker2 % docker images
+```zsh
+son1732321732@c6r3s8 my-docker2 % docker images
 REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
 nginx        latest    4e5db4761e0f   2 weeks ago   161MB
 son1732321732@c6r3s8 my-docker2 % docker ps -a
 CONTAINER ID   IMAGE     COMMAND                   CREATED       STATUS       PORTS                                     NAMES
 d4d795587163   nginx     "/docker-entrypoint.…"   5 hours ago   Up 5 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-docker2-web-server-1
+```
 - 실행 화면: ![실행화면](./images/docker2_result.png)
 https://github.com/jin1732/my-docker2/commit/4f9383260e2b67308017b1cdc015a0557edb5874
 
+#### Docker 컨테이너 중지 및 삭제
+- 명령어 : docker stop, docker rm
+```zsh
+son1732321732@c6r3s8 my-docker2 % docker stop my-docker2-web-server-1
+my-docker2-web-server-1
+son1732321732@c6r3s8 my-docker2 % docker ps -a
+CONTAINER ID   IMAGE     COMMAND                   CREATED       STATUS                         PORTS     NAMES
+3502c9ff17f8   ubuntu    "/bin/bash"               2 hours ago   Exited (0) About an hour ago             my-ubuntu
+86302c23ec18   nginx     "/docker-entrypoint.…"   3 hours ago   Exited (0) 12 seconds ago                my-docker2-web-server-1
+son1732321732@c6r3s8 my-docker2 % docker rm my-docker2-web-server-1
+my-docker2-web-server-1
+son1732321732@c6r3s8 my-docker2 % docker ps -a
+CONTAINER ID   IMAGE     COMMAND       CREATED       STATUS                         PORTS     NAMES
+3502c9ff17f8   ubuntu    "/bin/bash"   2 hours ago   Exited (0) About an hour ago             my-ubuntu
+```
+
 #### Docker 컨테이너 실행 상태 확인 
-- 명령어 : **% docker-compose ps**
-- 결과 : NAME                      IMAGE     COMMAND                   SERVICE      CREATED       STATUS       PORTS
-my-docker2-web-server-1   nginx     "/docker-entrypoint.…"   web-server   6 hours ago   Up 6 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp
+- 명령어 : docker-compose ps
+```zsh
+son1732321732@c6r3s8 my-docker2 % docker-compose ps
+NAME                      IMAGE     COMMAND                   SERVICE      CREATED       STATUS       PORTS
+my-docker2-web-server-1   nginx     "/docker-entrypoint.…"   web-server   3 hours ago   Up 3 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp
+```
 - 실행화면 : ![실행화면](./images/compose_result.png)
 https://github.com/jin1732/my-docker2/commit/f600478a7c0c28d83133bb75fe3b12e19cc81794
 
 #### 서비스 로그 및 리소스 점검
 - 명령어: docker logs , docker stats
-- 결과 : son1732321732@c6r3s8 my-docker2 % docker logs my-docker2-web-server-1
+```zsh
+son1732321732@c6r3s8 my-docker2 % docker logs my-docker2-web-server-1
 /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -172,13 +207,15 @@ https://github.com/jin1732/my-docker2/commit/f600478a7c0c28d83133bb75fe3b12e19cc
 2026/08/03 03:05:12 [notice] 1#1: start worker process 30
 CONTAINER ID   NAME                      CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS 
 d4d795587163   my-docker2-web-server-1   0.00%     6.289MiB / 15.67GiB   0.04%     1.71kB / 126B   4.1kB / 8.19kB   7 
+```
 - - 실행 화면: ![실행화면](./images/docker3_result.png)
 https://github.com/jin1732/my-docker2/commit/6c4cd51770fbd6ab7a113736677d7011dbc782a1
 
 
 ###  ⑤ 웹 서버 응답 확인
 - 명령어 : **% curl localhost:8080**
-- 결과 : <!DOCTYPE html>
+```zsh
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -193,7 +230,7 @@ https://github.com/jin1732/my-docker2/commit/6c4cd51770fbd6ab7a113736677d7011dbc
     <p>✨성공적으로 웹 서버를 띄웠어요~ ✨</p>
 </body>
 </html>  
-
+```
 - 실행화면 : ![실행화면](./images/curl_result.png)
 https://github.com/jin1732/my-docker2/commit/099f61a979f3f879c2fab0278768a0cc3c6f61e0
 
@@ -334,7 +371,7 @@ memo.txt
 ```
 
 ###  ⑦ 권한 실습: chmod 명령어를 통한 파일 권한 변경 전/후 비교
-- 파일 권한 실습 (ls -ld,chmod)
+- 파일 권한 실습 (ls -ld, chmod)
 ```zsh
 son1732321732@c6r3s8 practice-dir % ls -ld memo.txt
 -rwxr-xr-x  1 son1732321732  son1732321732  18  8  3 19:33 memo.txt
@@ -425,3 +462,52 @@ CONTAINER ID   IMAGE     COMMAND                   CREATED          STATUS      
 86302c23ec18   nginx     "/docker-entrypoint.…"   2 hours ago      Up 2 hours     0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-docker2-web-server-1
 son1732321732@c6r3s8 practice-dir % 
 ```
+
+###  ⑨ Dockerfile 기반 커스텀 이미지 제작 및 배포
+#### Dockerfile 및 설정 파일 확인
+- 명령어 : cat Dockerfile
+```zsh
+son1732321732@c6r3s8 my-docker2 % cat Dockerfile
+# 1. 어떤 기존 베이스를 선택했는가: NGINX 최신 버전
+FROM nginx:latest
+
+# 2. 커스텀 포인트 1: 이미지 관리자 정보 추가 (메타데이터)
+LABEL maintainer="jin1732 <son173232@naver.com>"
+
+# 3. 커스텀 포인트 2: 내가 만든 index.html을 이미지 내부로 복사
+# (이 작업을 통해 볼륨 연결 없이도 이미지만 실행하면 내 웹사이트가 뜹니다.)
+COPY index.html /usr/share/nginx/html/index.html
+
+# 4. 커스텀 포인트 3: 80번 포트 개방 명시
+EXPOSE 80%     
+```
+
+#### 커스텀 이미지 빌드 및 컨테이너 실행
+- 명령어 : docker-compose up -d --build
+```zsh
+[+] Running 1/1
+ ✔ Container my-docker2-web-server-1  Started     
+ ```
+
+#### 최종 웹 서버 응답 확인 (curl)
+- 명령어 : curl localhost:8080
+```zsh
+son1732321732@c6r3s8 my-docker2 % curl localhost:8080
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>☀︎ 나의 도커서버 만들기 ☀︎</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        h1 { color: #0969da; }
+    </style>
+</head>
+<body>
+    <h1>Docker로 만든 Nginx 서버 작동</h1>
+    <p>✨Bind Mount 검증해야해요! ✨</p>
+</body>
+</html>%   
+```
+
