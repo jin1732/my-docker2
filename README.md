@@ -111,7 +111,13 @@ cb39a43 README la -al 수정
 - 실행화면 : ![실행화면](./images/log_result.png)
 https://github.com/jin1732/my-docker2/commit/3ba0d9d54d37a59cd12bd05e6b1f574056509745
 
-###  ④ Docker 컨테이너 실행 상태 확인
+###  ④ Docker 운영 및 검증 로그
+####  설치 및 환경 점검 결과
+- 명령어: docker --version, docker info
+- 내용: Docker 엔진 설치 버전과 시스템 환경 정보를 확인합니다.
+- 실행 화면: ![실행화면](./images/docker1_result.png)
+
+
 - 명령어 : **% docker-compose ps**
 - 결과 : NAME                      IMAGE     COMMAND                   SERVICE      CREATED       STATUS       PORTS
 my-docker2-web-server-1   nginx     "/docker-entrypoint.…"   web-server   6 hours ago   Up 6 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp
@@ -181,5 +187,7 @@ https://github.com/jin1732/my-docker2/commit/099f61a979f3f879c2fab0278768a0cc3c6
 ### 터미널 조작 로그
 - GitHub에서 브랜치를 삭제한 후, `git fetch -p`를 통해 로컬의 원격 브랜치 목록을 동기화한 실제 로그입니다.
 - 실행화면 ![실핼화면](./images/fetch_result.png)
+https://github.com/jin1732/my-docker2/commit/f28db6eb4025d8945961a73c688d71149950cce7
+
 
 
