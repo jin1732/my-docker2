@@ -178,4 +178,8 @@ https://github.com/jin1732/my-docker2/commit/099f61a979f3f879c2fab0278768a0cc3c6
 - git pull origin test-fix2 명령어를 실행.
 - 서버의 최신 커밋 데이터를 가져와서(fetch) 현재 로컬 파일에 합침(merge). 이후 cat README.md로 최신 내용이 반영된 것을 확인.
 
+### 터미널 조작 로그
+- GitHub에서 브랜치를 삭제한 후, `git fetch -p`를 통해 로컬의 원격 브랜치 목록을 동기화한 실제 로그입니다.
+- 실행화면 ![실핼화면](./images/fetch_result.png)
+
 
