@@ -23,7 +23,6 @@
 
 ## 3) 검증 방법 및 결과
 
-
 ###  ① 작업 디렉토리 위치 확인
 
 - 명령어 : **% pwd**
@@ -79,28 +78,15 @@ https://github.com/jin1732/my-docker2/commit/f600478a7c0c28d83133bb75fe3b12e19cc
 https://github.com/jin1732/my-docker2/commit/099f61a979f3f879c2fab0278768a0cc3c6f61e0
 
 
+## 4) 실습 기반 트러블슈팅 리포트
 
-- **hello-world 컨테이너 실행 테스트**
-% docker run hello-world
+### [Case 1] 원격 브랜치 인식 불가
+#### ① 문제 상황 (Problem)
+- 상황: GitHub 웹 UI에서 test-fix2 브랜치를 새로 생성함.
+- 에러: 로컬 터미널에서 해당 브랜치로 이동하기 위해 git checkout test-fix2를 입력했으나 에러 발생.
+- 에러 메시지: error: pathspec 'test-fix2' did not match any file(s) known to git
 
-# Dockerfile 작성 (Nginx 베이스의 커스텀 이미지)
-# - LABEL: 관리자 정보 추가
-# - COPY: 로컬의 index.html을 이미지 내부로 복사
-# - EXPOSE: 80번 포트 개방
-
-# 커스텀 이미지 빌드
-% docker build -t my-custom-nginx:v1 .
-
-# 컨테이너 실행 (포트 8080 연결)
-% docker run -d -p 8080:80 --name my-web-server my-custom-nginx:v1
-
-### 4. 커스텀 이미지의 의미
-이번 실습에서 만든 이미지가 왜 '커스텀'인지 정리합니다.
-1. **정체성 부여**: `LABEL`을 통해 제작자(jin1732) 정보를 메타데이터로 포함했습니다.
-2. **콘텐츠 변경**: 기본 Nginx 초기 화면 대신, 직접 작성한 `index.html`을 이미지 안에 영구적으로 포함(`COPY`)시켰습니다.
-3. **설계 명시**: `EXPOSE`를 통해 이 이미지가 어떤 포트를 사용하는지 가이드를 포함했습니다.
-
-## 4) 학습 회고
-- **Docker의 핵심**: 단순히 프로그램을 실행하는 것을 넘어, 내가 원하는 설정과 파일을 포함한 '나만의 환경'을 이미지로 캡슐화하는 과정을 익혔습니다.
-- **인프라의 코드화**: Dockerfile이라는 텍스트 파일을 통해 서버 환경을 정의하고, 이를 Git으로 관리함으로써 개발 환경의 일관성을 유지하는 법을 배웠습니다.
-- **권한 관리**: `chmod`를 통해 리눅스 기반 시스템에서의 파일 보안 권한을 실습하며 Docker 컨테이너 내부의 파일 시스템 구조를 이해하는 기초를 다졌습니다.
+### 2단계 : 문제 상황 
+- git branch (결과 : * main)
+- git checkout test-fix2 (결과 : error: pathspec 'test-fix2' did not match any file(s) known to git)
+- **GitHub 웹에서 수정했던 README.md의 최신 내용이 로컬 파일에 반영되어 있지 않아서 에러.**
