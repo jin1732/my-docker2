@@ -245,8 +245,8 @@ https://github.com/jin1732/my-docker2/commit/f28db6eb4025d8945961a73c688d7114995
 ##  6) 핵심 제출물 및 상세 검증 증거
 
 ###  ① Dockerfile 및 웹 서버 소스코드
-- Dockerfile: Nginx 기반 커스텀 이미지 생성 레시피 [파일보기](./Dockerfile)
-- index.html: 서비스 메인 페이지 소스코드 [파일보기](./index.html)
+- Dockerfile: Nginx 기반 커스텀 이미지 생성 레시피 (./Dockerfile)
+- index.html: 서비스 메인 페이지 소스코드 (./index.html)
 - 빌드/실행 로그: docker compose up -d --build 실행 시 이미지 빌드 및 컨테이너 생성 완료 로그 확인
 ```zsh
 son1732321732@c6r3s8 my-docker2 % docker compose down
