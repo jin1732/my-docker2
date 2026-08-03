@@ -360,6 +360,19 @@ Status: Downloaded newer image for ubuntu:latest
 root@3502c9ff17f8:/# 
 ```
 #### 개념 정리: 컨테이너 접속 방식(attach vs exec)의 차이점
+- 명령어 : attach_원래 떠 있는 화면으로 들어가는 방식 (**exit 하면 컨테이너 종료**)
+```zsh
+son1732321732@c6r3s8 practice-dir % docker attach my-ubuntu
+root@3502c9ff17f8:/# ls
+bin  boot  dev  etc  hello.txt  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  test_dir  tmp  usr  var
+root@3502c9ff17f8:/# exit
+exit
+son1732321732@c6r3s8 practice-dir % docker ps
+CONTAINER ID   IMAGE     COMMAND                   CREATED       STATUS       PORTS                                     NAMES
+86302c23ec18   nginx     "/docker-entrypoint.…"   2 hours ago   Up 2 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-docker2-web-server-1
+son1732321732@c6r3s8 practice-dir % 
+```
+
 - 명령어 : exec_새 창을 열고 들어가는 방식 (**exit 해도 컨테이너 유지**)
 ```zsh
 root@3502c9ff17f8:/# exit
@@ -401,17 +414,5 @@ son1732321732@c6r3s8 practice-dir % docker ps
 CONTAINER ID   IMAGE     COMMAND                   CREATED          STATUS         PORTS                                     NAMES
 3502c9ff17f8   ubuntu    "/bin/bash"               11 minutes ago   Up 4 minutes                                             my-ubuntu
 86302c23ec18   nginx     "/docker-entrypoint.…"   2 hours ago      Up 2 hours     0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-docker2-web-server-1
-son1732321732@c6r3s8 practice-dir % 
-```
-- 명령어 : attach_원래 떠 있는 화면으로 들어가는 방식 (**exit 하면 컨테이너 종료**)
-```zsh
-son1732321732@c6r3s8 practice-dir % docker attach my-ubuntu
-root@3502c9ff17f8:/# ls
-bin  boot  dev  etc  hello.txt  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  test_dir  tmp  usr  var
-root@3502c9ff17f8:/# exit
-exit
-son1732321732@c6r3s8 practice-dir % docker ps
-CONTAINER ID   IMAGE     COMMAND                   CREATED       STATUS       PORTS                                     NAMES
-86302c23ec18   nginx     "/docker-entrypoint.…"   2 hours ago   Up 2 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-docker2-web-server-1
 son1732321732@c6r3s8 practice-dir % 
 ```
