@@ -173,6 +173,7 @@ https://github.com/jin1732/my-docker2/commit/f600478a7c0c28d83133bb75fe3b12e19cc
 CONTAINER ID   NAME                      CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS 
 d4d795587163   my-docker2-web-server-1   0.00%     6.289MiB / 15.67GiB   0.04%     1.71kB / 126B   4.1kB / 8.19kB   7 
 - - 실행 화면: ![실행화면](./images/docker3_result.png)
+https://github.com/jin1732/my-docker2/commit/6c4cd51770fbd6ab7a113736677d7011dbc782a1
 
 
 ###  ⑤ 웹 서버 응답 확인
@@ -239,6 +240,26 @@ https://github.com/jin1732/my-docker2/commit/099f61a979f3f879c2fab0278768a0cc3c6
 - GitHub에서 브랜치를 삭제한 후, `git fetch -p`를 통해 로컬의 원격 브랜치 목록을 동기화한 실제 로그입니다.
 - 실행화면 ![실핼화면](./images/fetch_result.png)
 https://github.com/jin1732/my-docker2/commit/f28db6eb4025d8945961a73c688d71149950cce7
+
+
+##  6) 핵심 제출물 및 상세 검증 증거
+
+###  ① Dockerfile 및 웹 서버 소스코드
+- Dockerfile: Nginx 기반 커스텀 이미지 생성 레시피 [파일보기](./Dockerfile)
+- index.html: 서비스 메인 페이지 소스코드 [파일보기](./index.html)
+- 빌드/실행 로그: docker compose up -d --build 실행 시 이미지 빌드 및 컨테이너 생성 완료 로그 확인
+```zsh
+son1732321732@c6r3s8 my-docker2 % docker compose down
+[+] Running 2/2
+ ✔ Container my-docker2-web-server-1  Removed                                                                                   0.4s 
+ ✔ Network my-docker2_default         Removed                                                                                   0.1s 
+son1732321732@c6r3s8 my-docker2 % docker compose up -d --build
+[+] Running 2/2
+ ✔ Network my-docker2_default         Created                                                                                   0.1s 
+ ✔ Container my-docker2-web-server-1  Started                                                                                   0.4s 
+son1732321732@c6r3s8 my-docker2 % 
+```
+이미지가 이미 최신 상태라 빌드 과정이 생략되었지만, 네트워크와 컨테이너가 정상적으로 생성 및 시작된 것을 확인할 수 있습니다
 
 
 
