@@ -284,7 +284,38 @@ https://github.com/jin1732/my-docker2/commit/f28db6eb4025d8945961a73c688d7114995
 
 ###  ① Dockerfile 및 웹 서버 소스코드
 - Dockerfile: Nginx 기반 커스텀 이미지 생성 레시피 (./Dockerfile)
+```zsh
+# 1. 어떤 기존 베이스를 선택했는가: NGINX 최신 버전
+FROM nginx:latest
+
+# 2. 커스텀 포인트 1: 이미지 관리자 정보 추가 (메타데이터)
+LABEL maintainer="jin1732 <son173232@naver.com>"
+
+# 3. 커스텀 포인트 2: 내가 만든 index.html을 이미지 내부로 복사
+# (이 작업을 통해 볼륨 연결 없이도 이미지만 실행하면 내 웹사이트가 뜹니다.)
+COPY index.html /usr/share/nginx/html/index.html
+
+# 4. 커스텀 포인트 3: 80번 포트 개방 명시
+EXPOSE 80
+```
 - index.html: 서비스 메인 페이지 소스코드 (./index.html)
+```zsh
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>☀︎ 나의 도커서버 만들기 ☀︎</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        h1 { color: #0969da; }
+    </style>
+</head>
+<body>
+    <h1>Docker로 만든 Nginx 서버 작동</h1>
+    <p>✨성공적으로 웹 서버를 띄웠어요~ ✨</p>
+</body>
+</html>  
+```
 - 빌드/실행 로그: docker compose up -d --build 실행 시 이미지 빌드 및 컨테이너 생성 완료 로그 확인
 ```zsh
 son1732321732@c6r3s8 my-docker2 % docker compose down
