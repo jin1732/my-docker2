@@ -141,15 +141,39 @@ son1732321732@c6r3s8 my-docker2 % docker ps -a
 CONTAINER ID   IMAGE     COMMAND                   CREATED       STATUS       PORTS                                     NAMES
 d4d795587163   nginx     "/docker-entrypoint.…"   5 hours ago   Up 5 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-docker2-web-server-1
 - 실행 화면: ![실행화면](./images/docker2_result.png)
+https://github.com/jin1732/my-docker2/commit/4f9383260e2b67308017b1cdc015a0557edb5874
 
-
-이미지 및 전체 컨테이너 목록
-
+#### Docker 컨테이너 실행 상태 확인 
 - 명령어 : **% docker-compose ps**
 - 결과 : NAME                      IMAGE     COMMAND                   SERVICE      CREATED       STATUS       PORTS
 my-docker2-web-server-1   nginx     "/docker-entrypoint.…"   web-server   6 hours ago   Up 6 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp
 - 실행화면 : ![실행화면](./images/compose_result.png)
 https://github.com/jin1732/my-docker2/commit/f600478a7c0c28d83133bb75fe3b12e19cc81794
+
+#### 서비스 로그 및 리소스 점검
+- 명령어: docker logs , docker stats
+- 결과 : son1732321732@c6r3s8 my-docker2 % docker logs my-docker2-web-server-1
+/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up
+2026/08/03 03:05:12 [notice] 1#1: using the "epoll" event method
+2026/08/03 03:05:12 [notice] 1#1: nginx/1.31.3
+2026/08/03 03:05:12 [notice] 1#1: built by gcc 14.2.0 (Debian 14.2.0-19) 
+2026/08/03 03:05:12 [notice] 1#1: OS: Linux 6.17.8-orbstack-00308-g8f9c941121b1
+2026/08/03 03:05:12 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 20480:1048576
+2026/08/03 03:05:12 [notice] 1#1: start worker processes
+2026/08/03 03:05:12 [notice] 1#1: start worker process 29
+2026/08/03 03:05:12 [notice] 1#1: start worker process 30
+CONTAINER ID   NAME                      CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS 
+d4d795587163   my-docker2-web-server-1   0.00%     6.289MiB / 15.67GiB   0.04%     1.71kB / 126B   4.1kB / 8.19kB   7 
+- - 실행 화면: ![실행화면](./images/docker3_result.png)
+
 
 ###  ⑤ 웹 서버 응답 확인
 - 명령어 : **% curl localhost:8080**
