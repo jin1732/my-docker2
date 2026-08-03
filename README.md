@@ -269,6 +269,12 @@ CONTAINER ID   IMAGE     COMMAND                   CREATED          STATUS      
 0b92fb465e1d   nginx     "/docker-entrypoint.…"   10 minutes ago   Up 10 minutes   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-docker2-web-server-1
 ```
 - 실행화면 : ![실행화면](./images/Port_result.png)
+https://github.com/jin1732/my-docker2/commit/d346b6c6e9a99750973d590206c70e0a3a3f6744
+
+###  ③ 바인드 마운트(Bind Mount) 실시간 반영 증거
+- 검증 방법: 호스트의 index.html 수정 시 컨테이너 재시작 없이 반영되는지 확인
+- 실행화면 : ![실행화면](./images/index_result.png)
+ index.html 파일을 수정한 후 브라우저를 새로고침하여, 변경된 내용이 즉시 동기화된 것을 검증하였습니다. (②번 항목의 초기 화면과 변경 사항 비교)
 
 
 
