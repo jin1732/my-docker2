@@ -45,7 +45,7 @@
 
 ###  ④ 본격적인 코딩 및 설계 (VS Code 활용)
 - code . : VS Code로 현재 폴더 열기
-- index.html 생성: 웹사이트의 내용을 작성 (예: Hello Docker!)
+- index.html 생성: 웹사이트의 내용을 작성 (예: 나의 도커서버 만들기)
 - Dockerfile 생성: "나만의 서버 이미지"를 만드는 레시피 작성 (Nginx 베이스, 파일 복사 설정)
 - docker-compose.yml 생성: Docker 설계도 작성 (이미지, 포트 번호 등 정의)
 
