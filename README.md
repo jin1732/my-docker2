@@ -29,7 +29,7 @@
 
 ###  ① 프로젝트 기초 공사
 - mkdir my-docker2 : 프로젝트 폴더 생성 (내 작업실 만들기)
-- cd my-docker : 폴더로 이동 (작업실 안으로 들어가기)
+- cd my-docker2 : 폴더로 이동 (작업실 안으로 들어가기)
 - git init : Git 저장소 시작 (이 폴더를 Git이 지금부터 감시하고 기록하기 시작함)
 - git config --global user.name "이름" : 내 이름 등록 (누가 기록했는지 남기기 위해)
 - git config --global user.email "이메일" : 내 이메일 등록 (연락처 정보 남기기)
