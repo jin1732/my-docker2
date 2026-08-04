@@ -1,0 +1,10 @@
+# 비밀 파일 무시
+secret.txt
+
+# 운영체제 임시 파일 무시
+.DS_Store
+Thumbs.db
+
+# 로그 및 환경 설정 파일
+*.log
+.env
