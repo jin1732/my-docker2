@@ -2,6 +2,7 @@
 #### CLI 기초부터 Docker 기반 웹 서버 운영, Git 버전 관리까지! 이 프로젝트는 Docker와 Git을 활용한 표준화된 개발 환경 구축을 통해 컨테이너 기술의 핵심 원리를 체득하고 실무 역량을 기르는 데 목적이 있습니다.
 ---
 
+<br>
 
 > ## 1) 실행 환경
 - **OS**: macOS Sequoia 15.7.4
@@ -22,7 +23,7 @@
 - [x] Docker Volume을 활용한 데이터 보존 실습
 - [x] Git 저장소 생성 및 GitHub 원격 저장소 연결
 
-
+<br>
 
 > ## 3) Docker & Git 개발 환경 구축 전체 로드맵
 
@@ -82,7 +83,7 @@
 - docker login : Docker Hub 계정으로 로그인
 - docker push [내아이디]/이미지명 : 내가 만든 이미지를 인터넷에 올려서 어디서든 사용할 수 있게 만들기
 
-
+<br>
 
 > ## 4) 검증 방법 및 결과
 
@@ -235,7 +236,7 @@ https://github.com/jin1732/my-docker2/commit/6c4cd51770fbd6ab7a113736677d7011dbc
 - 실행화면 : ![실행화면](./images/curl_result.png)
 https://github.com/jin1732/my-docker2/commit/099f61a979f3f879c2fab0278768a0cc3c6f61e0
 
-
+<br>
 
 > ## 5) 실습 기반 트러블슈팅 리포트
 
@@ -279,7 +280,7 @@ https://github.com/jin1732/my-docker2/commit/099f61a979f3f879c2fab0278768a0cc3c6
 - 실행화면 ![실핼화면](./images/fetch_result.png)
 https://github.com/jin1732/my-docker2/commit/f28db6eb4025d8945961a73c688d71149950cce7
 
-
+<br>
 
 > ##  6) 핵심 제출물 및 상세 검증 증거
 
