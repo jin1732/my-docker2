@@ -76,7 +76,7 @@
 
 ###  ⑪ 협업 및 동기화
 - git status : 현재 수정된 파일이 무엇인지 수시로 체크
-- git pull origin main : GitHub에 있는 최신 코드를 내 컴퓨터로 가져오기 (※ 내용이 반영되지 않는다면 13단계 Case 2 참고)
+- git pull origin main : GitHub에 있는 최신 코드를 내 컴퓨터로 가져오기
 - .gitignore 작성: 보안상 중요한 파일이나 불필요한 파일이 Git에 올라가지 않도록 설정
 
 ###  ⑫ 나만의 이미지 배포 (심화)
