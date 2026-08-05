@@ -66,6 +66,7 @@
 - echo "<h1>볼륨 테스트</h1>" > volume-test.html : 볼륨에 넣을 파일 생성(한글이 깨지는 문제가 발생하여 VS Code에서 UTF-8 인코딩으로 수정)
 - docker cp volume-test.html nginx-vol:/usr/share/nginx/html/index.html : 수정한 파일을 볼륨 컨테이너 안으로 복사
 - 브라우저 확인 : localhost:8081 접속하여 확인
+
 **볼륨이란?** Docker가 직접 관리하는 저장 공간
 → 컨테이너가 삭제되어도 데이터가 사라지지 않음!
 → 바인드마운트와 달리 VSCode로 직접 수정 불가(docker cp 명령어로 파일을 복사해야 반영됨)
