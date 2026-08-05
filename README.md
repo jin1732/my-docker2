@@ -63,7 +63,7 @@
 - docker volume create my-nginx-vol : Docker 볼륨 생성(Docker가 직접 관리하는 저장 공간 만들기)
 - docker volume inspect my-nginx-vol : 볼륨 상세 정보 확인(볼륨이 어디에 저장되는지 확인)
 - docker run -d -p 8081:80 --name nginx-vol \ -v my-nginx-vol:/usr/share/nginx/html nginx : 볼륨(-v)을 적용하여 서버 실행 (포트 8081)
-- echo "<h1>볼륨 테스트</h1>" > volume-test.html : 볼륨에 넣을 파일 생성(한글이 깨지는 문제가 발생하여 VS Code에서 UTF-8 인코딩으로 수정)
+- `echo "<h1>볼륨 테스트</h1>" > volume-test.html` : 볼륨에 넣을 파일 생성 (한글 깨짐 방지를 위해 UTF-8 인코딩 확인)
 - docker cp volume-test.html nginx-vol:/usr/share/nginx/html/index.html : 수정한 파일을 볼륨 컨테이너 안으로 복사
 - 브라우저 확인 : localhost:8081 접속하여 확인
 
