@@ -47,39 +47,51 @@
 - code . : VS Code로 현재 폴더 열기
 - index.html 생성: 웹사이트의 내용을 작성 (예: 나의 도커서버 만들기)
 - Dockerfile 생성: "나만의 서버 이미지"를 만드는 레시피 작성 (Nginx 베이스, 파일 복사 설정)
-- docker-compose.yml 생성: Docker 설계도 작성 (이미지, 포트 번호 등 정의)
 
-###  ⑤ 서비스 실행 및 확인
-- docker compose up -d --build : 설계도대로 서버를 조립하고 백그라운드에서 실행
-- 브라우저 확인: 주소창에 localhost:8080을 입력해 내 웹사이트가 나오는지 확인
+###  ⑤ 바인드 마운트 준비 (실시간 반영을 위한 폴더 연결 설정)
+- mkdir practice-dir : 바인드 마운트용 폴더 생성 (호스트와 컨테이너를 연결할 공유 폴더)
+- practice-dir/index.html 생성 : 실시간으로 수정할 웹페이지 파일 작성
+바인드 마운트란? 내 컴퓨터 폴더와 컨테이너 내부 폴더를 직접 연결하는 것
+→ 파일을 수정하면 컨테이너 재시작 없이 즉시 반영됨!
 
-###  ⑥ 작업 마무리 (로컬 Git 기록)
+###  ⑥ 서비스 실행 및 확인 (바인드 마운트 적용)
+- docker run -d -p 8080:80 -v $(pwd)/practice-dir:/usr/share/nginx/html nginx
+: 바인드 마운트(-v)를 적용하여 서버 실행
+- 브라우저 확인 : 주소창에 localhost:8080을 입력해 내 웹사이트가 나오는지 확인
+
+###  ⑦ 작업 마무리 (로컬 Git 기록)
 - git add . : 새로 만든 모든 파일(html, Dockerfile 등)을 장바구니에 담기
-- git commit -m "Nginx 설정 완료" : 오늘 작업한 내용을 내 컴퓨터 Git에 최종 저장
+- git commit -m "Nginx 바인드 마운트 설정 완료" : 오늘 작업한 내용을 내 컴퓨터 Git에 최종 저장
 
-###  ⑦ GitHub에 내보내기 (원격 저장소 연동)
+###  ⑧ GitHub에 내보내기 (원격 저장소 연동)
 - git remote add origin [GitHub 주소] : 내 컴퓨터와 GitHub 저장소를 연결 (최초 1회)
 - git push origin main : 내 컴퓨터의 기록을 GitHub로 전송 (클라우드 백업 및 공유)
-
-###  ⑧ 서비스 관리 및 상태 점검
+ 
+###  ⑨ 서비스 관리 및 상태 점검
 - docker ps : 현재 실행 중인 컨테이너 목록과 상태 확인 (건강검진)
 - docker logs -f [컨테이너명] : 서버 내부의 로그(접속 기록, 에러)를 실시간으로 확인
 
-###  ⑨ 코드 수정 및 업데이트 
-- 파일 수정: VS Code에서 내용을 수정하고 저장
-- docker compose up -d --build : 수정한 코드를 서버에 반영하기 위해 다시 조립하고 실행
-- 새로고침: 브라우저에서 변경된 내용 확인
+###  ⑩ 코드 수정 및 실시간 업데이트 (바인드 마운트의 핵심!)
+#### 바인드 마운트로 연결된 파일 수정 시 (HTML/CSS/JS)
+- 파일 수정 : VS Code에서 practice-dir/index.html 내용을 수정하고 저장
+- 브라우저 새로고침 : 컨테이너 재시작 없이 변경된 내용이 즉시 반영!
+- 흐름 : 파일 수정 → 저장 → 브라우저 새로고침
 
-###  ⑩ 환경 정리 및 리소스 관리
-- docker compose down : 실행 중인 서비스를 완전히 끄고 삭제 (깔끔한 뒷정리)
+#### 🔨 Dockerfile 수정 시
+- 이미지 자체가 바뀌는 것이므로 반드시 재빌드 필요
+- 흐름 : Dockerfile 수정 → docker build → docker run 재실행
+
+###  ⑪ 환경 정리 및 리소스 관리
+- docker stop [컨테이너명] : 실행 중인 컨테이너 중지
+- docker rm [컨테이너명] : 컨테이너 삭제 (깔끔한 뒷정리)
 - docker system prune -a : 사용하지 않는 이미지/컨테이너 찌꺼기를 삭제해 용량 확보
 
-###  ⑪ 협업 및 동기화
+###  ⑫ 협업 및 동기화
 - git status : 현재 수정된 파일이 무엇인지 수시로 체크
 - git pull origin main : GitHub에 있는 최신 코드를 내 컴퓨터로 가져오기
 - .gitignore 작성: 보안상 중요한 파일이나 불필요한 파일이 Git에 올라가지 않도록 설정
 
-###  ⑫ 나만의 이미지 배포 
+###  ⑬ 나만의 이미지 배포 
 - docker login : Docker Hub 계정으로 로그인
 - docker push [내아이디]/이미지명 : 내가 만든 이미지를 인터넷에 올려서 어디서든 사용할 수 있게 만들기
 
@@ -345,9 +357,32 @@ https://github.com/jin1732/my-docker2/commit/d346b6c6e9a99750973d590206c70e0a3a3
 
 ###  ③ 바인드 마운트(Bind Mount) 실시간 반영 증거
 - 검증 방법: 호스트의 index.html 수정 시 컨테이너 재시작 없이 반영되는지 확인
-- 실행화면 : ![실행화면](./images/index_result.png)
- index.html 파일을 수정한 후 브라우저를 새로고침하여, 변경된 내용이 즉시 동기화된 것을 검증하였습니다. (②번 항목의 초기 화면과 변경 사항 비교)
-https://github.com/jin1732/my-docker2/commit/aeb47574c6a9ef008f13dd95771608963b8b2d53
+```zsh
+son1732321732@c4r3s8 my-docker2 % echo '<h1>Hello Docker Bind Mount!</h1>' > practice-dir/index.html
+
+son1732321732@c4r3s8 my-docker2 % cat practice-dir/index.html
+<h1>Hello Docker Bind Mount!</h1>
+son1732321732@c4r3s8 my-docker2 % docker run -d -p 8080:80 -v $(pwd)/practice-dir:/usr/share/nginx/html nginx
+Unable to find image 'nginx:latest' locally
+latest: Pulling from library/nginx
+26c307b5e35a: Pull complete 
+3c55dc422a81: Pull complete 
+d84ae7b21412: Pull complete 
+c0df8d325117: Pull complete 
+b8b80b9bc028: Pull complete 
+f5de6e85ac74: Pull complete 
+5a4222b844e8: Pull complete 
+Digest: sha256:21f8c0e3416b84eeec895c80077da69e2d25938cb0fc4bcc6a2ea33699b75703
+Status: Downloaded newer image for nginx:latest
+1d0fad77310599b3934808b6e66a166ba2f7283b74ccb6fea6b393a473e663ef
+son1732321732@c4r3s8 my-docker2 % docker ps
+CONTAINER ID   IMAGE     COMMAND                   CREATED         STATUS         PORTS                                     NAMES
+1d0fad773105   nginx     "/docker-entrypoint.…"   2 minutes ago   Up 2 minutes   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   pensive_borg
+son1732321732@c4r3s8 my-docker2 % 
+```
+- 실행화면 : ![실행화면](./images/Bind%20Mount1.png)
+![실행화면](./images/Bind%20Mount2.png)
+ index.html 파일을 수정한 후 브라우저를 새로고침하여, 변경된 내용이 즉시 동기화된 것을 검증하였습니다. 
 
 
 ### ④ Docker 볼륨(Volume) 데이터 영속성 증거
