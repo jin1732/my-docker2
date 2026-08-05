@@ -516,46 +516,20 @@ son1732321732@c6r3s8 practice-dir %
 
 - 명령어 : exec_새 창을 열고 들어가는 방식 (**exit 해도 컨테이너 유지**)
 ```zsh
-root@3502c9ff17f8:/# exit
-exit
-son1732321732@c6r3s8 practice-dir % docker ps
-CONTAINER ID   IMAGE     COMMAND                   CREATED       STATUS       PORTS                                     NAMES
-86302c23ec18   nginx     "/docker-entrypoint.…"   2 hours ago   Up 2 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-docker2-web-server-1
 son1732321732@c6r3s8 practice-dir % docker start my-ubuntu
 my-ubuntu
 son1732321732@c6r3s8 practice-dir % docker exec -it my-ubuntu /bin/bash
 root@3502c9ff17f8:/# #
-root@3502c9ff17f8:/# ls
-bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
 root@3502c9ff17f8:/# mkdir test_dir
 root@3502c9ff17f8:/# touch hello.txt
 root@3502c9ff17f8:/# ls
 bin  boot  dev  etc  hello.txt  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  test_dir  tmp  usr  var
-root@3502c9ff17f8:/# whoami
-root
-root@3502c9ff17f8:/# pwd
-/
-root@3502c9ff17f8:/# cat /etc/os-release
-PRETTY_NAME="Ubuntu 26.04 LTS"
-NAME="Ubuntu"
-VERSION_ID="26.04"
-VERSION="26.04 LTS (Resolute Raccoon)"
-VERSION_CODENAME=resolute
-ID=ubuntu
-ID_LIKE=debian
-HOME_URL="https://www.ubuntu.com/"
-SUPPORT_URL="https://help.ubuntu.com/"
-BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
-PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
-UBUNTU_CODENAME=resolute
-LOGO=ubuntu-logo
 root@3502c9ff17f8:/# exit
 exit
 son1732321732@c6r3s8 practice-dir % docker ps
 CONTAINER ID   IMAGE     COMMAND                   CREATED          STATUS         PORTS                                     NAMES
 3502c9ff17f8   ubuntu    "/bin/bash"               11 minutes ago   Up 4 minutes                                             my-ubuntu
 86302c23ec18   nginx     "/docker-entrypoint.…"   2 hours ago      Up 2 hours     0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-docker2-web-server-1
-son1732321732@c6r3s8 practice-dir % 
 ```
 
 ###  ⑨ Dockerfile 기반 커스텀 이미지 제작 및 배포
