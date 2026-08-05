@@ -51,7 +51,7 @@
 ###  ⑤ 바인드 마운트 준비 (실시간 반영을 위한 폴더 연결 설정)
 - mkdir practice-dir : 바인드 마운트용 폴더 생성 (호스트와 컨테이너를 연결할 공유 폴더)
 - practice-dir/index.html 생성 : 실시간으로 수정할 웹페이지 파일 작성
-바인드 마운트란? 내 컴퓨터 폴더와 컨테이너 내부 폴더를 직접 연결하는 것
+**바인드 마운트란?** 내 컴퓨터 폴더와 컨테이너 내부 폴더를 직접 연결하는 것
 → 파일을 수정하면 컨테이너 재시작 없이 즉시 반영됨!
 
 ###  ⑥ 서비스 실행 및 확인 (바인드 마운트 적용)
@@ -59,19 +59,30 @@
 : 바인드 마운트(-v)를 적용하여 서버 실행
 - 브라우저 확인 : 주소창에 localhost:8080을 입력해 내 웹사이트가 나오는지 확인
 
-###  ⑦ 작업 마무리 (로컬 Git 기록)
+###  ⑦ 볼륨 준비 및 실행 (데이터 영구 보존을 위한 볼륨 설정)
+- docker volume create my-nginx-vol : Docker 볼륨 생성(Docker가 직접 관리하는 저장 공간 만들기)
+- docker volume inspect my-nginx-vol : 볼륨 상세 정보 확인(볼륨이 어디에 저장되는지 확인)
+- docker run -d -p 8081:80 --name nginx-vol \ -v my-nginx-vol:/usr/share/nginx/html nginx : 볼륨(-v)을 적용하여 서버 실행 (포트 8081)
+- echo "<h1>볼륨 테스트</h1>" > volume-test.html : 볼륨에 넣을 파일 생성(한글이 깨지는 문제가 발생하여 VS Code에서 UTF-8 인코딩으로 수정)
+- docker cp volume-test.html nginx-vol:/usr/share/nginx/html/index.html : 수정한 파일을 볼륨 컨테이너 안으로 복사
+- 브라우저 확인 : localhost:8081 접속하여 확인
+**볼륨이란?** Docker가 직접 관리하는 저장 공간
+→ 컨테이너가 삭제되어도 데이터가 사라지지 않음!
+→ 바인드마운트와 달리 VSCode로 직접 수정 불가(docker cp 명령어로 파일을 복사해야 반영됨)
+
+###  ⑧ 작업 마무리 (로컬 Git 기록)
 - git add . : 새로 만든 모든 파일(html, Dockerfile 등)을 장바구니에 담기
 - git commit -m "Nginx 바인드 마운트 설정 완료" : 오늘 작업한 내용을 내 컴퓨터 Git에 최종 저장
 
-###  ⑧ GitHub에 내보내기 (원격 저장소 연동)
+###  ⑨ GitHub에 내보내기 (원격 저장소 연동)
 - git remote add origin [GitHub 주소] : 내 컴퓨터와 GitHub 저장소를 연결 (최초 1회)
 - git push origin main : 내 컴퓨터의 기록을 GitHub로 전송 (클라우드 백업 및 공유)
  
-###  ⑨ 서비스 관리 및 상태 점검
+###  ⑩ 서비스 관리 및 상태 점검
 - docker ps : 현재 실행 중인 컨테이너 목록과 상태 확인 (건강검진)
 - docker logs -f [컨테이너명] : 서버 내부의 로그(접속 기록, 에러)를 실시간으로 확인
 
-###  ⑩ 코드 수정 및 실시간 업데이트 (바인드 마운트의 핵심!)
+###  ⑪ 코드 수정 및 실시간 업데이트 (바인드 마운트의 핵심!)
 #### 바인드 마운트로 연결된 파일 수정 시 (HTML/CSS/JS)
 - 파일 수정 : VS Code에서 practice-dir/index.html 내용을 수정하고 저장
 - 브라우저 새로고침 : 컨테이너 재시작 없이 변경된 내용이 즉시 반영!
@@ -81,17 +92,17 @@
 - 이미지 자체가 바뀌는 것이므로 반드시 재빌드 필요
 - 흐름 : Dockerfile 수정 → docker build → docker run 재실행
 
-###  ⑪ 환경 정리 및 리소스 관리
+###  ⑫ 환경 정리 및 리소스 관리
 - docker stop [컨테이너명] : 실행 중인 컨테이너 중지
 - docker rm [컨테이너명] : 컨테이너 삭제 (깔끔한 뒷정리)
 - docker system prune -a : 사용하지 않는 이미지/컨테이너 찌꺼기를 삭제해 용량 확보
 
-###  ⑫ 협업 및 동기화
+###  ⑬ 협업 및 동기화
 - git status : 현재 수정된 파일이 무엇인지 수시로 체크
 - git pull origin main : GitHub에 있는 최신 코드를 내 컴퓨터로 가져오기
 - .gitignore 작성: 보안상 중요한 파일이나 불필요한 파일이 Git에 올라가지 않도록 설정
 
-###  ⑬ 나만의 이미지 배포 
+###  ⑭ 나만의 이미지 배포 
 - docker login : Docker Hub 계정으로 로그인
 - docker push [내아이디]/이미지명 : 내가 만든 이미지를 인터넷에 올려서 어디서든 사용할 수 있게 만들기
 
@@ -385,20 +396,37 @@ son1732321732@c4r3s8 my-docker2 %
  index.html 파일을 수정한 후 브라우저를 새로고침하여, 변경된 내용이 즉시 동기화된 것을 검증하였습니다. 
 
 ### ④ Docker 볼륨(Volume) 데이터 영속성 증거
-- 검증 방법: 컨테이너 삭제(down) 후 재실행(up) 시에도 데이터가 유지되는지 확인
+- 검증 방법: 실행 중인 볼륨 연결 컨테이너를 완전히 삭제(rm -f)한 후, 동일한 볼륨을 연결하여 재실행했을 때 데이터가 유지되는지 확인합니다.
+**컨테이너 삭제**: `docker rm -f nginx-vol` 실행으로 기존 컨테이너 제거
+**데이터 유지 확인**: 동일 볼륨(`my-nginx-vol`)을 사용하여 새 컨테이너 실행
 ```zsh
-son1732321732@c6r3s8 my-docker2 % docker compose down
-[+] Running 2/2
- ✔ Container my-docker2-web-server-1  Removed                                                                                   0.4s 
- ✔ Network my-docker2_default         Removed                                                                                   0.1s 
-son1732321732@c6r3s8 my-docker2 % docker compose up -d
-[+] Running 2/2
- ✔ Network my-docker2_default         Created                                                                                   0.1s 
- ✔ Container my-docker2-web-server-1  Started                                                                                   0.3s 
-son1732321732@c6r3s8 my-docker2 % 
-```
-- 결과 : docker compose down으로 컨테이너를 완전히 삭제한 후 다시 생성했음에도, 바인드 마운트된 index.html의 수정 내용이 유실되지 않고 유지됨을 확인했습니다. 이는 컨테이너 인프라 환경에서 데이터 영속성이 성공적으로 구현되었음을 의미합니다.
+son1732321732@c4r3s8 my-docker2 % docker volume create my-nginx-vol
 
+my-nginx-vol
+son1732321732@c4r3s8 my-docker2 % docker volume ls
+DRIVER    VOLUME NAME
+local     my-nginx-vol
+son1732321732@c4r3s8 my-docker2 % docker run -d -p 8081:80 -v my-nginx-vol:/usr/share/nginx/html --name nginx-vol nginx
+7c6b3ebbb1e9a9ad67a8ecdfbaebf9e85be8c01d81938b75bcd4976ca9b8e991
+son1732321732@c4r3s8 my-docker2 % docker ps
+CONTAINER ID   IMAGE     COMMAND                   CREATED          STATUS          PORTS                                     NAMES
+7c6b3ebbb1e9   nginx     "/docker-entrypoint.…"   36 seconds ago   Up 35 seconds   0.0.0.0:8081->80/tcp, [::]:8081->80/tcp   nginx-vol
+1d0fad773105   nginx     "/docker-entrypoint.…"   4 hours ago      Up 4 hours      0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   pensive_borg
+son1732321732@c4r3s8 my-docker2 % echo "<h1>볼륨 테스트</h1>" > volume-test.html
+son1732321732@c4r3s8 my-docker2 % docker cp volume-test.html nginx-vol:/usr/share/nginx/html/index.html
+Successfully copied 3.07kB to nginx-vol:/usr/share/nginx/html/index.html
+son1732321732@c4r3s8 my-docker2 % docker cp volume-test.html nginx-vol:/usr/share/nginx/html/index.html
+Successfully copied 3.07kB to nginx-vol:/usr/share/nginx/html/index.html
+son1732321732@c4r3s8 my-docker2 % docker rm -f nginx-vol
+nginx-vol
+son1732321732@c4r3s8 my-docker2 % docker volume ls
+DRIVER    VOLUME NAME
+local     my-nginx-vol
+son1732321732@c4r3s8 my-docker2 % docker run -d -p 8081:80 -v my-nginx-vol:/usr/share/nginx/html --name nginx-vol nginx
+959abdb4ea45b3dfe115f62a8e61b4380b1da68ec0bc1c313d838a4e6590961a
+son1732321732@c4r3s8 my-docker2 % 
+```
+- 결과 : 컨테이너를 새로 생성했음에도 불구하고, 이전에 복사했던 index.html 내용이 그대로 출력됨을 확인 (데이터 영속성 증명)
 
 ###  ⑤ Git & GitHub & VSCode 연동 증거
 - Git 설정: git config를 통한 사용자 이름/이메일 등록 완료
