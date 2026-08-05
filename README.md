@@ -52,8 +52,8 @@
 - mkdir practice-dir : 바인드 마운트용 폴더 생성 (호스트와 컨테이너를 연결할 공유 폴더)
 - practice-dir/index.html 생성 : 실시간으로 수정할 웹페이지 파일 작성
 
->**바인드 마운트란?** 내 컴퓨터 폴더와 컨테이너 내부 폴더를 직접 연결하는 것
-→ 파일을 수정하면 컨테이너 재시작 없이 즉시 반영됨!
+- **바인드 마운트란?** 내 컴퓨터 폴더와 컨테이너 내부 폴더를 직접 연결하는 것
+→ 파일을 수정하면 컨테이너 재시작 없이 즉시 반영!
 
 ###  ⑥ 서비스 실행 및 확인 (바인드 마운트 적용)
 - docker run -d -p 8080:80 -v $(pwd)/practice-dir:/usr/share/nginx/html nginx
@@ -67,8 +67,7 @@
 - `echo "<h1>볼륨 테스트</h1>" > volume-test.html` : 볼륨에 넣을 파일 생성 (한글 깨짐 방지를 위해 UTF-8 인코딩 확인)
 - docker cp volume-test.html nginx-vol:/usr/share/nginx/html/index.html : 수정한 파일을 볼륨 컨테이너 안으로 복사
 - 브라우저 확인 : localhost:8081 접속하여 확인
-
->**볼륨이란?** Docker가 직접 관리하는 저장 공간
+- **볼륨이란?** Docker가 직접 관리하는 저장 공간
 → 컨테이너가 삭제되어도 데이터가 사라지지 않음!
 → 바인드마운트와 달리 VSCode로 직접 수정 불가(docker cp 명령어로 파일을 복사해야 반영됨)
 
