@@ -330,21 +330,6 @@ EXPOSE 80
 </body>
 </html>  
 ```
-- 빌드/실행 로그: docker compose up -d --build 실행 시 이미지 빌드 및 컨테이너 생성 완료 로그 확인
-```zsh
-son1732321732@c6r3s8 my-docker2 % docker compose down
-[+] Running 2/2
- ✔ Container my-docker2-web-server-1  Removed                                                                                   0.4s 
- ✔ Network my-docker2_default         Removed                                                                                   0.1s 
-son1732321732@c6r3s8 my-docker2 % docker compose up -d --build
-[+] Running 2/2
- ✔ Network my-docker2_default         Created                                                                                   0.1s 
- ✔ Container my-docker2-web-server-1  Started                                                                                   0.4s 
-son1732321732@c6r3s8 my-docker2 % 
-```
-이미지가 이미 최신 상태라 빌드 과정이 생략되었지만, 네트워크와 컨테이너가 정상적으로 생성 및 시작된 것을 확인할 수 있습니다
-https://github.com/jin1732/my-docker2/commit/7f4b3fa819ce3aeb7a1f7352536d06f368c5e435
-
 
 ###  ② 포트 매핑(Port Mapping) 접속 확인
 - 설정: 8080:80 (호스트 포트 8080을 컨테이너 80으로 매핑)
