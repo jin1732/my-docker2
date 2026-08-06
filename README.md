@@ -440,9 +440,9 @@ memo.txt
 ```
 
 ###  ⑦ 권한 실습: chmod 명령어를 통한 파일 권한 변경 전/후 비교
-- 파일 권한 실습 (ls -ld, chmod)
+- 파일 권한 실습 (ls -l, chmod)
 ```zsh
-son1732321732@c6r3s8 my-docker2 % ls -ld secret.txt 
+son1732321732@c6r3s8 my-docker2 % ls -l secret.txt 
 -rw-r--r--  1 son1732321732  son1732321732  0  8  4 14:11 secret.txt
 son1732321732@c6r3s8 my-docker2 % chmod 400 secret.txt
 son1732321732@c6r3s8 my-docker2 % ls -l secret.txt
