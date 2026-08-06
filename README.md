@@ -199,16 +199,6 @@ CONTAINER ID   IMAGE     COMMAND       CREATED       STATUS                     
 3502c9ff17f8   ubuntu    "/bin/bash"   2 hours ago   Exited (0) About an hour ago             my-ubuntu
 ```
 
-#### Docker 컨테이너 실행 상태 확인 
-- 명령어 : docker-compose ps
-```zsh
-son1732321732@c6r3s8 my-docker2 % docker-compose ps
-NAME                      IMAGE     COMMAND                   SERVICE      CREATED       STATUS       PORTS
-my-docker2-web-server-1   nginx     "/docker-entrypoint.…"   web-server   3 hours ago   Up 3 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp
-```
-- 실행화면 : ![실행화면](./images/compose_result.png)
-https://github.com/jin1732/my-docker2/commit/f600478a7c0c28d83133bb75fe3b12e19cc81794
-
 #### 서비스 로그 및 리소스 점검
 - 명령어: docker logs , docker stats
 ```zsh
