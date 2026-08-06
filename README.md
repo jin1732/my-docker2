@@ -246,8 +246,7 @@ https://github.com/jin1732/my-docker2/commit/6c4cd51770fbd6ab7a113736677d7011dbc
 </body>
 </html>  
 ```
-- 실행화면 : ![실행화면](./images/curl_result.png)
-https://github.com/jin1732/my-docker2/commit/099f61a979f3f879c2fab0278768a0cc3c6f61e0
+- 실행화면 : ![실행화면](./images/Port_result.png)
 
 <br>
 
