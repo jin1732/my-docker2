@@ -284,7 +284,6 @@ https://github.com/jin1732/my-docker2/commit/6c4cd51770fbd6ab7a113736677d7011dbc
 #### ① 문제 상황 (Problem)
 - 상황 : docker run -p 8080:80 명령어를 사용하여 Nginx 컨테이너를 실행하려고 함.
 - 현상 : 컨테이너가 실행되지 않고 터미널에 에러 메시지 출력.
-- 에러메시지 : docker: Error response from daemon: driver failed programming external connectivity on endpoint ... Bind for 0.0.0.0:8080 failed: port is already allocated.
 
 #### ② 원인 가설
 - 호스트 컴퓨터(내 컴퓨터)의 8080번 포트를 이미 다른 프로세스가 점유하고 있음.
