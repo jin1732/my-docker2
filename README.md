@@ -298,11 +298,6 @@ https://github.com/jin1732/my-docker2/commit/6c4cd51770fbd6ab7a113736677d7011dbc
 - 방법 2 : 포트 번호를 변경한다(기존 프로세스를 종료할 수 없는 경우, 호스트 포트를 다른 번호(8081)로 변경하여 실행)
 - 결과 확인: docker ps를 통해 0.0.0.0:8081->80/tcp로 정상 매핑된 것을 확인하고 브라우저에서 localhost:8081로 접속하여 정상 작동을 확인.
 
-### 터미널 조작 로그
-- GitHub에서 브랜치를 삭제한 후, `git fetch -p`를 통해 로컬의 원격 브랜치 목록을 동기화한 실제 로그입니다.
-- 실행화면 ![실핼화면](./images/fetch_result.png)
-https://github.com/jin1732/my-docker2/commit/f28db6eb4025d8945961a73c688d71149950cce7
-
 <br>
 
 > ##  6) 핵심 제출물 및 상세 검증 증거
